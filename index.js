@@ -1,10 +1,9 @@
-const express = require("express");
-const mongoose = require("mongoose");
+
 require("dotenv/config");
 const app = express();
 
 app.use(express.json());
-const PORT = process.env.PORT || 5002;
+const PORT = process.env.PORT || 5001;
 console.log(process.env.DB_KEY);
 let DB_URL =
     "mongodb+srv://developer:developer@cluster0.2logr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
