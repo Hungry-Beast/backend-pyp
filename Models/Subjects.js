@@ -15,7 +15,7 @@ const SubjectSchema = new Schema(
             type: Number,
             required: true,
         },
-        semister: {
+        semester: {
             type: Number,
             required: true,
         },
@@ -28,4 +28,4 @@ const SubjectSchema = new Schema(
         timestamps: true,
     }
 );
-module.exports=mongoose.model("Subject",SubjectSchema)
+module.exports = mongoose.model("Subject", SubjectSchema)
