@@ -1,19 +1,24 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const mongoConnect = require('./db')
 const subjectsRoute = require("./Routes/Subjects");
+
 const { MongoClient, ServerApiVersion } = require("mongodb");
+
+const Route = require('./Routes/auth')
+const app = express();
+
 const cors = require("cors");
 require("dotenv/config");
 
-const app = express();
-
+mongoConnect()
 app.use(express.json());
 app.use(cors());
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5050;
 // app.use(bodyParser.json({ limit: "30mb", extended: true }));
 // app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 // app.use(cors());
-app.use("/subjects", subjectsRoute);
+app.use("/auth", Route);
+app.use("/login", subjectsRoute);
 app.use("/", (req, res) => {
     res.send("Hi chutiya");
 });
@@ -30,35 +35,8 @@ app.use("/", (req, res) => {
 // } catch (e) {
 //     console.log("could not connect");
 // }
-// const client = new MongoClient(process.env.DB_KEY_LOCAL);
-// try {
-//     const connectMongodb = async () => {
-//         await client.connect();
-//         listDBs(client)
-//     };
-//     connectMongodb()
-// } catch (error) {
-//     console.log(error);
-// }
-const client = new MongoClient(process.env.DB_KEY_LOCAL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    serverApi: ServerApiVersion.v1,
-});
-client.connect((err) => {
-    const collection = client.db("test").collection("devices");
-    // perform actions on the collection object
-    client.close();
-});
 
 app.listen(PORT, () =>
     console.log(`Server Running on Port: http://localhost:${PORT}`)
 );
 
-const listDBs = async (client) => {
-    const DatabaseList = await client.db().admin().listDatabases();
-    console.log("DBs");
-    DatabaseList.databases.forEach((db, i) => {
-        console.log(`DB(${i}):${db.name}`);
-    });
-};
