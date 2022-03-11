@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const cors = require("cors");
 require("dotenv/config");
 
 mongoose_URI = process.env.DB_KEY;
