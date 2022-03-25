@@ -17,7 +17,11 @@ const SubjectSchema = new Schema(
         },
         semester: {
             type: Number,
-            required: true,
+            required: true
+        },
+        approved: {
+            type: Boolean,
+            default: true
         },
         createdBy: {
             type: String,
