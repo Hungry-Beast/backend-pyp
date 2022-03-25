@@ -12,24 +12,21 @@ router.post("/", [
         return res.status(400).json({ errors: errors.array() });
     }
     // const { name, code, year, semester, createdBy } = req.body
-    const { name: title, code: course_code, year, semester, createdBy } = req.body //schema's 'name' is changed to 'title'
+    const { name: title, code: course_code, year, semester, createdBy,fileUrl } = req.body //schema's 'name' is changed to 'title'
     try {
-        let subject = await Subject.findOne({
-            name: req.body.name,
-            code: req.body.code,
-            year: req.body.year,
-            semester: req.body.semester
-        })
-        console.log(subject)
-        if (subject) {
-            return res.status(400).json("Opps! This already exists.")
+        let subject=await Subject.findOne({code:course_code})
+        // console.log(subject);
+        if(subject){
+            res.status(400).json("Opps! This subject already exist")
+            return
         }
-        subject = await Subject.create({
+         subject = await Subject.create({
             name: title,
             code: course_code,
             year: year,
             semester: semester,
-            createdBy: createdBy
+            createdBy: createdBy,
+            fileUrl:fileUrl
         })
         res.status(200).json(subject);
 

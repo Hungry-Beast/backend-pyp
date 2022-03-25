@@ -10,6 +10,7 @@ const SubjectSchema = new Schema(
         code: {
             type: String,
             required: true,
+            unique:true
         },
         year: {
             type: Number,
@@ -24,7 +25,7 @@ const SubjectSchema = new Schema(
             required: true,
         },
         fileUrl:{
-            type:URL,
+            type:String,
             required:true
         }
     },
