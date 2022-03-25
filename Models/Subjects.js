@@ -27,6 +27,10 @@ const SubjectSchema = new Schema(
             type: String,
             required: true,
         },
+        approved:{
+            type:Boolean,
+            default:null
+        }
     },
     {
         timestamps: true,
