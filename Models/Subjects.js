@@ -23,6 +23,10 @@ const SubjectSchema = new Schema(
             type: String,
             required: true,
         },
+        fileUrl:{
+            type:URL,
+            required:true
+        }
     },
     {
         timestamps: true,
