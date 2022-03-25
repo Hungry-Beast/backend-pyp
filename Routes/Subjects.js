@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const Subject = require('../Models/Subjects')
 const { body, validationResult } = require('express-validator');
+const { fetchUser, fetchAdmin } = require("../middleware/fetchUser");
+const Subjects = require("../Models/Subjects");
 // const router = express.router()
 
 router.post("/", [
@@ -35,6 +37,35 @@ router.post("/", [
         res.status(500).send("Internal server error!")
     }
 })
+router.get("/", fetchUser,
+    async (req, res) => {
+        //if there are errors return Bad Request and the errors
+        try {
+            const subjects = await Subject.find()
+            console.log(subjects)
+            res.status(200).json(subjects);
+
+        }
+        catch (error) {
+            console.error(error.message)
+            res.status(500).send("Internal server error!")
+        }
+    })
+router.get("/admin", fetchAdmin,
+    async (req, res) => {
+        //if there are errors return Bad Request and the errors
+        try {
+            const subjects = await Subject.find({ approve: true })
+            console.log(subjects)
+            res.status(200).json(subjects);
+
+        }
+        catch (error) {
+            console.error(error.message)
+            res.status(500).send("Internal server error!")
+        }
+    })
+
 
 
 module.exports = router

@@ -1,27 +1,28 @@
 const express = require("express");
-const mongoConnect = require('./db')
+const mongoConnect = require("./db");
 const subjectsRoute = require("./Routes/Subjects");
 const fireApp=require('./firebaseAuth')
 
-const { MongoClient, ServerApiVersion } = require("mongodb");
-
-const Route = require('./Routes/auth')
+const adminRoute = require("./Routes/admin");
+// >>>>>>> 838833f6c3c639fe7174b56ba12d0797f26bfcd6
 const app = express();
 
 const cors = require("cors");
 require("dotenv/config");
 
-mongoConnect()
+mongoConnect();
 app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || 5050;
-// app.use(bodyParser.json({ limit: "30mb", extended: true }));
-// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-// app.use(cors());
-app.use("/auth", Route);
+
+app.use("/auth", adminRoute);
+app.use("/subjects", subjectsRoute);
+
+app.use("/admin", adminRoute);
+
 app.use("/subjects", subjectsRoute);
 app.use("/", (req, res) => {
-    res.send("Hi chutiya");
+  res.send("Hi chutiya");
 });
 // try {
     // Connect to the MongoDB cluster
@@ -38,6 +39,6 @@ app.use("/", (req, res) => {
 // }
 
 app.listen(PORT, () =>
-    console.log(`Server Running on Port: http://localhost:${PORT}`)
+  console.log(`Server Running on Port: http://localhost:${PORT}`)
 );
 

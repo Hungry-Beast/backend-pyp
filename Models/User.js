@@ -23,6 +23,14 @@ const UserSchema = new Schema(
             type: Number,
             required: true,
         },
+        type: {
+            type: String,
+            default: "CR"
+        },
+        approved: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true,
