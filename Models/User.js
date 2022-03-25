@@ -9,7 +9,7 @@ const UserSchema = new Schema(
         email: {
             type: String,
             required: true,
-
+            unique:true
         },
         password: {
             type: String,
@@ -25,15 +25,15 @@ const UserSchema = new Schema(
         },
         type: {
             type: String,
-            default: "CR"
+            default: "CR",
         },
         approved: {
             type: Boolean,
-            default: false
-        }
+            default: false,
+        },
     },
     {
         timestamps: true,
     }
 );
-module.exports = mongoose.model("User", UserSchema)
+module.exports = mongoose.model("User", UserSchema);

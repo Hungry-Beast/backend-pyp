@@ -22,15 +22,11 @@ const SubjectSchema = new Schema(
         },
         approved: {
             type: Boolean,
-            default: true
+            default: null
         },
         createdBy: {
             type: String,
             required: true,
-        },
-        approved:{
-            type:Boolean,
-            default:null
         }
     },
     {

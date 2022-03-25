@@ -31,6 +31,7 @@ router.post('/createuser', [
         })
         if (email || reg) {
             return res.status(400).json("User already exists!")
+            
         }
         let salt = await bcrypt.genSalt(10)
         let secPassword = await bcrypt.hash(req.body.password, salt)
@@ -55,16 +56,16 @@ router.post('/createuser', [
 })
 // Route2: Creating a router for logging in.
 router.post('/login', [
-    body('name', 'Enter a valid name.').isLength({ min: 3 }),
+    body('email', 'Enter a valid name.').isLength({ min: 3 }),
     body("password", "Enter a valid password").isLength({ min: 5 }),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    const { name, password } = req.body;
+    const { email, password } = req.body;
     try {
-        let user = await User.findOne({ name })
+        let user = await User.findOne({ email })
         if (!user) {
             return res.status(400).json({ error: "Please try to login with correct credentials" });
         }

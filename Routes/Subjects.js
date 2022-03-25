@@ -41,7 +41,7 @@ router.get("/", fetchUser,
     async (req, res) => {
         //if there are errors return Bad Request and the errors
         try {
-            const subjects = await Subject.find()
+            const subjects = await Subject.find({ approved: true })
             console.log(subjects)
             res.status(200).json(subjects);
 
@@ -55,7 +55,7 @@ router.get("/admin", fetchAdmin,
     async (req, res) => {
         //if there are errors return Bad Request and the errors
         try {
-            const subjects = await Subject.find({ approve: true })
+            const subjects = await Subject.find()
             console.log(subjects)
             res.status(200).json(subjects);
 

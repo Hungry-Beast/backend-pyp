@@ -26,8 +26,7 @@ const UploadSchema = new Schema(
 
     noOfDownloads: {
       default: 0,
-      type: Number,
-      required: true,
+      type: Number
     },
     createdBy: {
       type: String,
