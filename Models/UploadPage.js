@@ -1,32 +1,42 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const uploadPage = mongoose.Schema({
+const UploadSchema = new Schema(
+  {
+    file: {
+      type: String,
+      required: true,
+    },
     branch: {
-        type: String,
-        required: true
-
+      type: String,
+      required: true,
     },
     semester: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     year: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     subject: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
-  
+
     noOfDownloads: {
-        type: Number,
-        required: true
-    }
-},{
-    timestamps:true
-}
+      default: 0,
+      type: Number,
+      required: true,
+    },
+    createdBy: {
+      type: String,
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
 );
 
-const PostMessage = mongoose.model('UploadPage', UploadSchema);
+module.exports = mongoose.model("UploadPage", UploadSchema);

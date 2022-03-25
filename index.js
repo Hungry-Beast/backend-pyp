@@ -2,6 +2,7 @@ const express = require("express");
 const mongoConnect = require('./db')
 const subjectsRoute = require("./Routes/Subjects");
 const Route = require('./Routes/auth')
+const adminRoute=require('./Routes/admin')
 const app = express();
 const cors = require("cors");
 require("dotenv/config");
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 5050;
 // app.use(cors());
 app.use("/auth", Route);
 app.use("/login", subjectsRoute);
+app.use("/admin", adminRoute);
 app.use("/", (req, res) => {
     res.send("Hi chutiya");
 });
