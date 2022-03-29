@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const UploadPage = require("../Models/UploadPage");
 const user = require("../Models/User");
+const {fetchAdmin} = require("../middleware/fetchUser.js");
 
 const File = router.get("/admin", async (req, res) => {
   try {

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Subject = require('../Models/Subjects')
 const { body, validationResult } = require('express-validator');
 const { fetchUser, fetchAdmin } = require("../middleware/fetchUser");
-const Subjects = require("../Models/Subjects");
+// const Subjects = require("../Models/Subjects");
 // const router = express.router()
 
 router.post("/", [
@@ -37,7 +37,7 @@ router.post("/", [
         res.status(500).send("Internal server error!")
     }
 })
-router.get("/", fetchUser,
+router.get("/",
     async (req, res) => {
         //if there are errors return Bad Request and the errors
         try {
