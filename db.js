@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 require("dotenv/config");
-mongoose_URI = process.env.DB_KEY;
+mongoose_URI = process.env.DB_KEY_LOCAL;
 mongoConnect = async () => {
     try {
         await mongoose.connect(mongoose_URI, () => {

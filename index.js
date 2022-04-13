@@ -13,7 +13,7 @@ const app = express();
 
 
 mongoConnect();
-app.use(express.json());
+app.use(express.json()); 
 app.use(cors());
 const PORT = process.env.PORT || 5050;
 
@@ -24,7 +24,7 @@ app.use("/upload", uploadRoute);
 
 
 app.use("/", (req, res) => {
-    res.send("Hi chutiya");
+    res.send("Hi I am ON");
 });
 
 app.listen(PORT, () =>
