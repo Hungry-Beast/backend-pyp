@@ -34,7 +34,7 @@ router.post("/", [
 
     } catch (error) {
         console.error(error.message)
-        res.status(500).send("Internal server error!")
+        res.status(500).json(`Internal server error!::${error}`)
     }
 })
 router.get("/",
