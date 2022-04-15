@@ -24,7 +24,8 @@ const UploadSchema = new Schema(
       required: true,
     },
     approved:{
-      type: Boolean
+      type: Boolean,
+      default:null
     },
     noOfDownloads: {
       default: 0,

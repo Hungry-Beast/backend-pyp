@@ -27,8 +27,7 @@ router.post("/", [
             code: course_code,
             year: year,
             semester: semester,
-            createdBy: createdBy,
-            fileUrl:fileUrl
+            createdBy: createdBy
         })
         res.status(200).json(subject);
 
@@ -51,20 +50,20 @@ router.get("/",
             res.status(500).send("Internal server error!")
         }
     })
-router.get("/admin", fetchAdmin,
-    async (req, res) => {
-        //if there are errors return Bad Request and the errors
-        try {
-            const subjects = await Subject.find()
-            console.log(subjects)
-            res.status(200).json(subjects);
+// router.get("/admin", fetchAdmin,
+//     async (req, res) => {
+//         //if there are errors return Bad Request and the errors
+//         try {
+//             const subjects = await Subject.find()
+//             console.log(subjects)
+//             res.status(200).json(subjects);
 
-        }
-        catch (error) {
-            console.error(error.message)
-            res.status(500).send("Internal server error!")
-        }
-    })
+//         }
+//         catch (error) {
+//             console.error(error.message)
+//             res.status(500).send("Internal server error!")
+//         }
+//     })
 
 
 

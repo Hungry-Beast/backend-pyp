@@ -9,7 +9,7 @@ const {
 } = require("firebase/storage");
 // const {storageRef}=require('firebase')
 
-const Upload = require("../Models/UploadPage");
+const UploadPage = require("../Models/UploadPage");
 const storage = getStorage();
 
 // 'file' comes from the Blob or File API
@@ -21,7 +21,7 @@ const {
 } = require("../middleware/fetchUser");
 // const router = express.router()
 
-const UploadPage = router.post(
+const Upload = router.post(
     "/",
     [fetchUser, multer().single("file")],
     async (req, res) => {
@@ -47,8 +47,7 @@ const UploadPage = router.post(
                 semester: req.body.semester,
                 year: req.body.year,
                 subject: req.body.subject,
-                noOfDownloads: req.body.noOfDownloads,
-                createdBy: req.body.createdBy,
+                createdBy: req.body.userId,
             });
             res.status(200).json(UploadData);
         } catch (error) {
@@ -91,4 +90,15 @@ router.post(
         }
     }
 );
-module.exports = UploadPage;
+const File = router.get("/file", async (req, res) => {
+    try {
+        console.log("Hi");
+        let TempUploadPage = await UploadPage.find({approved:true});
+        console.log(TempUploadPage);
+        res.status(200).json(TempUploadPage);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal server error!");
+    }
+});
+module.exports = router;
