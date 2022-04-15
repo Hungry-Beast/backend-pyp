@@ -29,7 +29,7 @@ const Users=router.get("/admin/users", async (req, res) => {
 const ApprovedSub = router.put("/subject", fetchAdmin, async (req, res) => {
   const {id, isApproved} = req.body;
   try {
-    await Subject.findOneAndUpdate({_id:id}, {$set: {approved: isApproved}});
+    const temp=await Subject.findOneAndUpdate({_id:id}, {$set: {approved: isApproved}});
     const tempSubject=await Subject.findOne({_id:id})
     res.status(200).json(tempSubject);
 

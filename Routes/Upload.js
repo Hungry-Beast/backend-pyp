@@ -26,13 +26,7 @@ const UploadPage = router.post(
     [fetchUser, multer().single("file")],
     async (req, res) => {
         try {
-            // let UploadPage = await UploadPage.findOne({});
-            // console.log(req);
-            console.log(req.file);
-            console.log(req.body.Helo);
-            var file = req.file;
-            // if (file) {
-            console.log(req.file);
+          
             let metadata = {
                 contentType: req.file.mimetype,
                 name: req.file.originalname,
